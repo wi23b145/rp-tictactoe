@@ -1,2 +1,4 @@
-package test;public class TicTacToeTest {
+package test;
+
+public class TicTacToeTest {
 }
