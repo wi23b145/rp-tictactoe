@@ -1,9 +1,14 @@
 package at.technikum.com.example;
 
 public class Player {
+
+
+
+        private String name;
         private char marker;
 
-        public Player(String alice, char marker) {
+        public Player(String name, char marker) {
+            this.name = name;
             this.marker = marker;
         }
 
@@ -11,9 +16,12 @@ public class Player {
             return marker;
         }
 
-    public String getName() {
-            return("");
+        public String getName() {
+            return name;
+        }
     }
-}
+
+
+
 
 

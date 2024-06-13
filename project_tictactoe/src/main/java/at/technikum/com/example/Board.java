@@ -2,6 +2,7 @@ package at.technikum.com.example;
 
 public class Board {
 
+
         private char[][] cells;
 
         public Board() {
@@ -10,13 +11,20 @@ public class Board {
         }
 
         public boolean isCellEmpty(int x, int y) {
+            if (x < 0 || x >= 3 || y < 0 || y >= 3) {
+                throw new IllegalArgumentException("Invalid cell coordinates");
+            }
             return cells[x][y] == ' ';
         }
 
         public void place(int x, int y, char marker) {
-            if (isCellEmpty(x, y)) {
-                cells[x][y] = marker;
+            if (x < 0 || x >= 3 || y < 0 || y >= 3) {
+                throw new IllegalArgumentException("Invalid cell coordinates");
             }
+            if (!isCellEmpty(x, y)) {
+                throw new IllegalArgumentException("Cell is already occupied");
+            }
+            cells[x][y] = marker;
         }
 
         public boolean isFull() {
@@ -49,11 +57,11 @@ public class Board {
             }
         }
 
-        // Getter-Methode für cells
         public char[][] getCells() {
             return cells;
         }
     }
+
 
 
 
