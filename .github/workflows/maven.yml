@@ -1,7 +1,7 @@
 
  name: Test Feature Branches
 
-on:
+on: main 
   push:
     branches:
       - 'feature/testing'  
