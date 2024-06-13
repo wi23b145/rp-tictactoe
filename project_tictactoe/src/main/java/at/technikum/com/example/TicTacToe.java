@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-
-
         private Player player1;
         private Player player2;
-        private Player currentPlayer;
-        private Board board;
+        public Player currentPlayer;
+        public Board board;
         private Scanner scanner;
 
         public TicTacToe() {
@@ -32,13 +30,31 @@ public class TicTacToe {
                 if (hasWinner()) {
                     switchCurrentPlayer(); // switch back to the winner
                     System.out.println("Player " + currentPlayer.getMarker() + " wins!");
+                    restart();
                 } else {
                     System.out.println("It's a draw!");
+                    restart();
                 }
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             } finally {
-                closeScanner(scanner);
+                closeScanner();
+            }
+        }
+
+        public void restart() {
+            System.out.println("Do you want to play again? (Y/N)");
+            String playAgain = scanner.next();
+            if (playAgain.equalsIgnoreCase("y")) {
+                System.out.println("Great!");
+                board.clear();
+                currentPlayer = player1;
+                start();
+            } else if (playAgain.equalsIgnoreCase("n")) {
+                System.out.println("Okay then...goodbye!");
+            } else {
+                System.out.println("Invalid input. Please enter Y or N.");
+                restart();
             }
         }
 
@@ -93,22 +109,12 @@ public class TicTacToe {
             return false;
         }
 
-        public Player getCurrentPlayer() {
-            return currentPlayer;
-        }
-
-        public Board getBoard() {
-            return board;
-        }
-
-        private void closeScanner(Scanner scanner) {
+        private void closeScanner() {
             if (scanner != null) {
                 scanner.close();
             }
         }
     }
-
-
 
 
 
